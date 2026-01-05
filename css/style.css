@@ -1,0 +1,1269 @@
+/* ======================================================
+   ROOT VARIABLES
+====================================================== */
+:root {
+  --body-bg: #FFFBFE;
+  --purple: #582C49;
+  --white: #FFFBFE;
+  --header-height: 88px;
+  --transition: 400ms ease-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+/* ======== Scroll ======== */
+/* Modern Firefox & Standard support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple) transparent;
+}
+
+/* Chrome, Edge, and Safari support */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--purple);
+  border-radius: 20px; /* Matches the rounded aesthetic of your buttons */
+  border: 2px solid var(--body-bg); /* Adds padding around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #432137; /* Slightly darker shade on hover */
+}
+/* ======================================================
+   BASE RESET
+====================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inika', serif;
+  background-color: var(--body-bg);
+  color: var(--purple);
+}
+
+/* ======================================================
+   HEADER
+====================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  transition: background var(--transition),
+              backdrop-filter var(--transition),
+              box-shadow var(--transition);
+}
+
+/* Header container */
+.header-inner {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  display: grid;
+  /* 1fr (Logo) | auto (Nav) | 1fr (Actions) */
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 65px;
+  transition: opacity var(--transition);
+  position: absolute; /* This allows 'left' to work */
+  left: 10px;
+}
+
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.925rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--purple);
+  white-space: nowrap;
+}
+.nav a {
+  position: relative;
+}
+
+.nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+}
+
+
+/* Action buttons */
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+
+  /* Positioning Logic */
+  position: absolute;
+  right: 10px; /* Exact distance from the right edge */
+  transform: translateY(-50%); /* Keeps it vertically centered in the header */
+  transition: opacity var(--transition), transform var(--transition);
+
+}
+
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.btn-outline {
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}
+
+/* ======================================================
+   HEADER STATES
+====================================================== */
+
+/* HERO STATE */
+.site-header.is-hero {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.site-header.is-hero .header-actions {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+/* SCROLLED STATE */
+.site-header.is-scrolled {
+  background: var(--body-bg);
+  backdrop-filter: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.site-header.is-scrolled .header-actions {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ======================================================
+   HERO SECTION
+====================================================== */
+/* ======================================================
+   HERO SECTION
+====================================================== */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 645px;
+  overflow: hidden;
+}
+
+/* Background video */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark overlay for contrast */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Centered content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 1.5rem;
+  text-align: center;
+  color: var(--purple);
+}
+
+/* Logo */
+.hero-logo {
+  width: min(550px, 100%);
+  margin-bottom: 2rem;
+  /* Increase these values for a bigger logo */
+  width: 1200px;          /* Increased from 550px */
+  max-width: 90vw;       /* Ensures it doesn't break on small screens */
+  height: auto;
+}
+
+/* CTA buttons wrapper */
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Buttons base */
+.hero-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 300ms ease-out,
+              color 300ms ease-out,
+              transform 300ms ease-out;
+}
+
+/* Primary button */
+.hero-btn--primary {
+  background: var(--purple);
+  color: #FFFBFE;
+}
+
+.hero-btn--primary:hover {
+  transform: translateY(-2px);
+}
+
+/* Outline button */
+.hero-btn--outline {
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  background: transparent;
+}
+
+.hero-btn--outline:hover {
+  background: rgba(88, 44, 73, 0.08);
+}
+
+/* Bottom tagline */
+.hero-tagline {
+  font-family: 'Inria Serif', serif;
+  font-size: 24px;
+  letter-spacing: 0.14em;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (min-width: 768px) {
+  .hero-logo {
+    width: 800px;
+  }
+
+  .hero-btn {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ======================================================
+   CONTENT
+====================================================== */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media (max-width: 768px) {
+  .header-inner {
+   display: grid;
+    /* This creates 3 equal-width zones */
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0; /* Reduced gap to prevent squeezing */
+    padding: 0 1rem;
+    padding-left: 20px;
+  }
+
+
+
+
+  .nav {
+    /* This ensures your 2x2 grid nav stays in the center column */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.2rem;
+    justify-content: center;
+  }
+  .header-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    justify-items: end;
+
+  }
+
+  .header-actions .btn {
+    min-width: 72px;
+    text-align: center;
+    padding: 0.5rem 0.9rem;
+    font-size: 13px;
+    padding-right: 10px;
+
+  }
+  /* Make sure the logo doesn't push the nav over */
+  .logo img {
+    height: 40px;
+  }
+
+
+   .hero-tagline {
+      font-size: 18px;
+    }
+   .nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.725rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--purple);
+      white-space: nowrap;
+    }
+}
+@media (max-width: 768px) {
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 0.75rem;
+    overflow: visible;
+    text-align: center;
+  }
+
+  .nav a {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    white-space: normal;
+  }
+}
+/* ======================================================
+   FADE-UP ANIMATION (ON SCROLL)
+====================================================== */
+
+/* Default visible state (no JS fallback) */
+.fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced state (JS-enabled browsers only) */
+.js .fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+/* When element becomes visible */
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional stagger support */
+.fade-up[data-delay] {
+  transition-delay: var(--delay, 0ms);
+}
+/* ======================================================
+   CONTENT 1 SECTION
+====================================================== */
+
+.content-1 {
+  background-color: var(--purple);
+  padding: 5rem 1.5rem;
+}
+
+.content-1-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Image */
+.content-1-media img {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Text block */
+.content-1-text {
+  color: #FFFBFE;
+}
+
+/* Title */
+.content-1-text h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  margin: 0 0 1.25rem 0;
+}
+
+/* Body text */
+.content-1-text p {
+  font-family: 'Inika', serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (min-width: 768px) {
+  .content-1-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .content-1-media img {
+    margin: 0;
+  }
+}
+/* ======================================================
+   CONTENT 1 — GRID REFINED (FIGMA-DRIVEN)
+====================================================== */
+
+.content-1 {
+  background-color: var(--purple);
+  padding: 6rem 1.5rem;
+}
+
+/* Main grid container */
+.content-1-grid {
+  max-width: 800px;          /* Matches Figma width */
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  column-gap: 4rem;
+  row-gap: 3rem;
+  align-items: center;
+}
+
+/* Media column */
+.content-1-media {
+  display: flex;
+  justify-content: center;
+}
+
+.content-1-media img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+/* Text column */
+.content-1-text {
+  color: #FFFBFE;
+}
+
+/* Title */
+.content-1-text h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1.25;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Body text */
+.content-1-text p {
+  font-family: 'Inika', serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 420px;
+}
+
+/* ======================================================
+   RESPONSIVE — MOBILE FIRST, DESKTOP CONTROLLED
+====================================================== */
+
+@media (max-width: 768px) {
+  .content-1 {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .content-1-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .content-1-media img {
+    max-width: 240px;
+  }
+
+  .content-1-text p {
+    margin: 0 auto;
+  }
+}
+/* ======================================================
+   CONTENT 1 — GRID-BASED SECTION
+====================================================== */
+
+.content-1 {
+  background-color: var(--white);
+  padding: 0; /* remove upper & lower gap */
+ overflow: hidden;
+}
+
+/* Grid wrapper */
+.content-1-grid {
+  max-width: 100%;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr; /* mobile-first */
+  align-items: stretch; /* ensure equal height columns */
+}
+
+/* ================= IMAGE COLUMN ================= */
+
+.content-1-media {
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2.5rem; /* ADD right padding */
+  padding-left: 10%;
+}
+
+.content-1-media img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+
+/* ================= RIGHT COLUMN (CONTENT PANEL) ================= */
+
+.content-1-panel {
+  background-color: var(--purple);
+  color: #FFFBFE;
+
+  max-width: 100%;
+  padding-left: 2rem; /* LEFT padding only */
+  padding-bottom: 2rem; /* LEFT padding only */
+  padding-left: 15%;
+}
+
+/* Title */
+.content-1-panel h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 35px;
+  max-width: 80%;
+}
+
+/* Body */
+.content-1-panel p {
+  font-family: 'Inika', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 80%;
+}
+
+/* ======================================================
+   DESKTOP GRID (FIGMA RATIO)
+====================================================== */
+
+@media (min-width: 1024px) {
+  .content-1-grid {
+    grid-template-columns: 41.6% 58.4%;
+  }
+  .content-1-media {
+
+  padding-right: 2.5rem; /* ADD right padding */
+ }
+ .content-1-panel h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 45px;
+  margin: 0 0 0.5rem 0;
+}
+    .content-1-panel {
+      background-color: var(--purple);
+      color: #FFFBFE;
+
+      padding: 4rem 0rem 4rem 4rem; /* LEFT padding only */
+      max-width: 100%;
+
+
+    }
+
+    .content-1-media img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0px;
+    }
+}
+
+/* ======================================================
+   CONTENT 2 — MENU SECTION
+====================================================== */
+
+.content-2 {
+  background-color: var(--white);
+  padding: 5rem 1.5rem; /* upper & lower gap */
+}
+
+.content-2-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* ================= TEXT ================= */
+
+.content-2-text {
+  color: var(--purple);
+}
+
+.content-2-text h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 0rem;
+}
+
+.content-2-text p {
+  font-family: 'Inika', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 1 rem;
+}
+
+/* ================= BUTTON ================= */
+
+.btn-primary {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+
+  background-color: var(--purple);
+  color: #ffffff;
+  text-decoration: none;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ================= IMAGE ================= */
+
+.content-2-media {
+  display: flex;
+  justify-content: center;
+}
+
+.content-2-media img {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* ======================================================
+   DESKTOP
+====================================================== */
+
+@media (min-width: 1024px) {
+  .content-2-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .content-2-media {
+    justify-content: flex-end;
+  }
+  .content-2-text {
+  color: var(--purple);
+}
+
+.content-2-text h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 50px;
+  margin-bottom: 0rem;
+}
+
+ .content-2-text p {
+  font-family: 'Inika', serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.75;
+  max-width: 550px;
+  margin-bottom: 0.5rem;
+ }
+ .btn-primary {
+
+  font-size: 18px;
+
+ }
+}
+
+.footer {
+  background-color: #5A2D4A; /* purple */
+  color: white;
+  font-family: 'Inika', serif;
+   padding: 48px 50px 28px;
+}
+
+/* ================= TOP GRID ================= */
+.footer-top {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr 1.5fr;
+  align-items: start;
+}
+
+/* COLUMNS */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* TITLES */
+.footer-title {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+
+/* LIST */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 10px;
+}
+
+.footer-list a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.footer-list a:hover {
+  opacity: 1;
+}
+
+/* RIGHT IMAGE */
+.footer-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: -20px; /* move upward */
+}
+.footer-image {
+  max-width: 40%;
+  margin-left: auto;
+  width: auto;
+  display: block;
+}
+
+/* ================= DIVIDER ================= */
+.footer-divider {
+  margin: 40px 0 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ================= BOTTOM ================= */
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+/* ================= MOBILE ================= */
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 60px 24px 32px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+
+  .footer-divider {
+    margin: 40px 0 32px;
+  }
+  /* Hide right illustration */
+  .footer-right {
+    display: none;
+  }
+
+  .footer-logo {
+    display: none;
+  }
+
+  .footer-logo-mobile {
+    display: block;
+    height: 80px;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+.footer-logo-mobile {
+  display: none;
+}
+
+
+/* ======================================================
+   CONTENT 3 — LOCATIONS
+====================================================== */
+
+.content-3 {
+  background-color: var(--purple);
+  padding: 2rem 1.5rem; /* Balanced padding for centering */
+  color: #FFFBFE;
+}
+
+/* Remove max-width here if you want the header to hit the screen edges */
+.content-3-inner {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+
+.content-3-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0 20px; /* 20px from screen edges */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content-3-header h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 42px;
+  margin: 0;
+}
+
+.content-3-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0rem;
+  letter-spacing: 0.08em;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  background: #FFFBFE;
+  color: var(--purple);
+  text-decoration: none;
+}
+
+/* ================= GRID ================= */
+
+.content-3-grid {
+  display: grid;
+  /* Reduced minmax to 320px to match your image max-width */
+  grid-template-columns: repeat(2, 320px);
+  justify-content: center;
+  gap: 10rem; /* Increased gap to keep cards apart since containers are now narrower */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ================= CARD ================= */
+
+.location-card {
+  display: flex; /* Changed to flex for better alignment control */
+  flex-direction: column;
+  align-items: flex-start; /* Aligns everything (img, h3, p) to the left */
+  text-decoration: none;
+  color: #FFFBFE;
+  transition: transform 300ms ease, opacity 300ms ease;
+  width: 100%;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  opacity: 0.95;
+}
+
+.location-card img {
+  width: 100%;
+  max-width: 320px; /* Your desired image width */
+  border-radius: 20px;
+  margin-bottom: 1.05rem;
+  display: block;
+}
+
+/* Card title */
+.location-card h3 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0 0 0.3rem;
+  text-align: left; /* Aligns with the left edge of the image */
+}
+
+/* Card text */
+.location-card p {
+  font-family: 'Inika', serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left; /* Aligns with the left edge of the image */
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  /* 1. HEADER STACKING */
+  .content-3-header {
+    flex-direction: column; /* Stack vertically instead of side-by-side */
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 0 20px; /* Keep your 20px safety margin from the screen edge */
+  }
+
+  .content-3-header h2 {
+    order: 1; /* Title on top */
+    font-size: 32px; /* Adjusted size for smaller screens */
+  }
+
+  .content-3-btn {
+    order: 2; /* Button below */
+  }
+
+  /* 2. GRID ADJUSTMENT */
+  .content-3-grid {
+    grid-template-columns: 1fr; /* Switch from 2 columns to 1 column */
+    gap: 3rem;
+    padding: 0 20px;
+    justify-items: center; /* Ensure the card container is centered in the grid */
+  }
+
+  /* 3. CARD CONTENT ALIGNMENT */
+  .location-card {
+    align-items: center;  /* Forces flex children (img, h3, p) to center */
+    text-align: center;   /* Centers the text lines */
+    max-width: 320px;     /* Matches image width to keep it tight */
+    margin: 0 auto;       /* Centers the whole card box */
+  }
+
+  .location-card img {
+    margin: 0 auto 1.05rem; /* Center the image within the card */
+  }
+
+  .location-card h3 {
+    text-align: center;   /* Overrides the desktop 'left' alignment */
+    width: 100%;
+  }
+
+  .location-card p {
+    text-align: center;   /* Overrides the desktop 'left' alignment */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/* ======================================================
+   CONTENT 4 — RESERVATION FORM
+====================================================== */
+
+.content-4 {
+  background: #FFFBFE;
+  padding: 0.5rem 1.5rem 5rem;
+}
+
+.content-4-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+
+.content-4-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.content-4-header h2 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  font-size: 46px;
+  color: var(--purple);
+  margin-bottom: 0.55rem;
+}
+
+.content-4-header p {
+  font-family: 'Inika', serif;
+  font-size: 22px;
+  color: var(--purple);
+  opacity: 0.9;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ================= FORM ================= */
+
+.reserve-form {
+  background: #FFFBFE;
+  border-radius: 28px;
+  padding: 2.5rem 2.5rem 3rem;
+  box-shadow: 0 30px 60px rgba(88, 44, 73, 0.08);
+}
+
+/* Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Field */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-family: 'Inika', serif;
+  font-size: 16px;
+  color: var(--purple);
+  margin-bottom: 0.5rem;
+}
+
+/* Input & Select */
+.form-field input,
+.form-field select {
+  font-family: 'Inika', serif;
+  font-size: 16px;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  border: none;
+  background: #E0E0E0;
+  color: var(--purple);
+  outline: none;
+}
+
+/* Focus */
+.form-field input:focus,
+.form-field select:focus {
+  box-shadow: 0 0 0 2px rgba(88, 44, 73, 0.35);
+}
+
+/* ================= BUTTON ================= */
+
+.reserve-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.85rem 2.5rem;
+  border-radius: 999px;
+  border: none;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+
+  background: var(--purple);
+  color: #FFFBFE;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.reserve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(88, 44, 73, 0.3);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem 1.5rem;
+  }
+
+  .content-4-header h2 {
+    font-size: 32px;
+  }
+
+  .content-4-header p {
+    font-size: 16px;
+  }
+}
+
+
+
+/* ================= MODAL ================= */
+
+/* THIS IS THE CRITICAL FIX */
+.modal-overlay[hidden] {
+  display: none !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex; /* This was overriding the 'hidden' attribute before */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: #FFFBFE;
+  border-radius: 24px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  animation: scaleIn 250ms ease;
+}
+
+.modal[hidden] {
+  display: none !important;
+}
+
+.modal h3 {
+  font-family: 'Inika', serif;
+  font-weight: 700;
+  color: #5A2C47; /* Assuming your --purple variable color */
+  margin-bottom: 1rem;
+}
+
+.modal p {
+  font-family: 'Inika', serif;
+  color: #5A2C47;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.modal-btn {
+  font-family: 'Inter', sans-serif;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-btn.primary {
+  background: #5A2C47;
+  color: #FFFBFE;
+}
+
+.modal-btn.cancel {
+  background: transparent;
+  color: #5A2C47;
+  border: 1px solid #5A2C47;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

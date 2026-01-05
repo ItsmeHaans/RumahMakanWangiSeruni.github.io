@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seruni</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="assets/Seruni.png" type="image/x-icon">
+</head>
+<body>
+
+<header class="site-header is-hero" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+  <img
+    src="assets/logo.png"
+    data-default="assets/logo.png"
+    data-bw="assets/logobw.png"
+    alt="Seruni"
+    id="headerLogo"
+  />
+</a>
+
+
+    <nav class="nav">
+      <a href="index.html" class="is-active">ABOUT US</a>
+      <a href="menu.html" >MENU</a>
+      <a href="locations.html" >LOCATIONS</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="index.html#reserve" class="btn btn-outline">Reserve</a>
+      <a href="index.html#footer" class="btn btn-outline">Order</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/hero.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <img
+      src="assets/logo.png"
+      alt="Wangi Seruni Rumah Makan"
+      class="hero-logo"
+    />
+
+    <div class="hero-actions">
+      <a href="index.html#reserve" class="hero-btn hero-btn--primary">RESERVE</a>
+      <a href="index.html#footer" class="hero-btn hero-btn--outline">ORDER</a>
+    </div>
+
+    <p class="hero-tagline">
+      SELAMAT DATANG DI RUMAH IBU
+    </p>
+  </div>
+</section>
+
+
+  <!-- CONTENT -->
+  <section class="content-1">
+  <div class="content-1-grid">
+    <div class="content-1-media fade-up" data-delay="0">
+      <img src="assets/trust.png" alt="Trust Illustration" />
+    </div>
+
+    <div class="content-1-panel">
+      <h2 class="fade-up" data-delay="100">
+        Wangi Seruni: A Taste of Home
+      </h2>
+
+      <p class="fade-up" data-delay="200">
+        Here, every dish is a warm embrace from a mother's kitchen.
+        Words are not needed when our Ayam Goreng Seruni speaks for itself,
+        perfectly crispy, infused with rich spices down to the bone,
+        making it arguably the best fried chicken in the heart of Bandung.
+      </p>
+    </div>
+  </div>
+</section>
+
+    <section class="content-2 fade-up">
+  <div class="content-2-grid">
+
+    <!-- LEFT: TEXT -->
+    <div class="content-2-text">
+      <h2>Menu Sajian Ibu</h2>
+      <p>
+        We believe true flavor comes from simplicity prepared with love.
+        From our legendary Ayam Goreng Seruni to the refreshing zest of
+        Sop Kakap Honje, every dish is curated to bring you the authentic
+        harmony of home-cooked comfort.
+      </p>
+
+      <a href="menu.html" class="btn-primary">MENU &gt;</a>
+    </div>
+
+    <!-- RIGHT: IMAGE -->
+    <div class="content-2-media">
+      <img src="assets/hero.png" alt="Menu Sajian Ibu">
+    </div>
+
+  </div>
+</section>
+
+    <section class="content-3">
+  <div class="content-3-inner">
+
+    <!-- Header -->
+    <div class="content-3-header">
+      <a href="locations.html" class="content-3-btn fade-up">ALL LOCATIONS ></a>
+      <h2 class="fade-up">Explore Our Locations</h2>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="content-3-grid">
+
+      <!-- Card 1 -->
+      <a href="/locations/cisangkuy" class="location-card fade-up">
+        <img src="assets/Cisangkuy1.png" alt="Cisangkuy Location">
+        <h3>Cisangkuy</h3>
+        <p>
+          Cisangkuy St No.20, Cihapit, Bandung<br>
+          Wetan, Bandung City, West Java 40114<br>
+          09.00 – 22.00, open every day
+        </p>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="/locations/cimanuk" class="location-card fade-up">
+        <img src="assets/Cimanuk1.png" alt="Cimanuk Location">
+        <h3>Cimanuk</h3>
+        <p>
+          Cimanuk St No.42, Citarum, Bandung<br>
+          Wetan, Bandung City, West Java 40115<br>
+          09.00 – 22.00, open every day
+        </p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ================= CONTENT 4 — RESERVATION ================= -->
+<section class="content-4" id="reserve">
+  <div class="content-4-inner">
+
+    <header class="content-4-header">
+      <h2>Love Seruni, Hate the Wait?</h2>
+      <p>
+        Bandung’s favorite fried chicken is in high demand!
+          <br>Skip the line and book your table in advance.
+      </p>
+    </header>
+
+    <form class="reserve-form" id="reserveForm" novalidate>
+
+      <div class="form-grid">
+
+        <!-- Date -->
+        <div class="form-field">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+
+        <!-- Location -->
+        <div class="form-field">
+          <label for="location">Choose Location</label>
+          <select id="location" required>
+            <option value="">Select location</option>
+          </select>
+        </div>
+
+        <!-- Pax -->
+        <div class="form-field">
+          <label for="pax">Pax</label>
+          <input
+            type="number"
+            id="pax"
+            min="1"
+            max="20"
+            placeholder="Number of guests"
+            required
+          >
+        </div>
+
+        <!-- Name -->
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Your full name"
+            required
+          >
+        </div>
+
+
+      </div>
+
+      <button type="submit" class="reserve-btn">
+        RESERVE
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+</main>
+<footer class="footer" id="footer">
+  <div class="footer-top">
+    <!-- LEFT -->
+    <div class="footer-col">
+      <h3 class="footer-title">Find Us On</h3>
+      <ul class="footer-list">
+        <li><a href="https://www.instagram.com/rm.wangiseruni/?hl=id">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@wangiseruni?is_from_webapp=1&sender_device=pc">TikTok</a></li>
+      </ul>
+    </div>
+
+    <!-- MIDDLE -->
+    <div class="footer-col">
+      <h3 class="footer-title">Explore</h3>
+      <ul class="footer-list">
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="index.html#reserve">Reservations</a></li>
+      </ul>
+    </div>
+
+      <!-- MIDDLE -->
+    <div class="footer-col">
+      <h3 class="footer-title">Order Us On</h3>
+      <ul class="footer-list">
+        <li><a href="https://gofood.link/a/NH7eLBw">Gojek</a></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-col footer-right">
+      <img src="assets/footer.png" alt="Hatur Nuhun" class="footer-image" />
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="footer-divider"></div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+  <img src="assets/logobw.png" class="footer-logo" alt="Seruni Logo">
+  <img src="assets/footer.png" class="footer-logo-mobile" alt="Seruni Footer">
+</div>
+
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+
+  <div class="modal" id="confirmModal">
+    <h3>Confirm Reservation</h3>
+
+    <p style="margin-bottom:1.5rem">
+      Are you sure you want to proceed with this reservation?
+    </p>
+
+    <div class="modal-actions">
+      <button type="button" class="modal-btn cancel" id="cancelConfirm">
+        Cancel
+      </button>
+      <button type="button" class="modal-btn primary" id="confirmReserve">
+        Confirm
+      </button>
+    </div>
+  </div>
+
+  <div class="modal" id="successModal" hidden>
+    <h3>Reservation Confirmed 🎉</h3>
+    <p>
+      Thank you! Your table has been reserved.<br>
+      We look forward to welcoming you.
+    </p>
+
+    <button type="button" class="modal-btn primary" id="closeSuccess">
+      Done
+    </button>
+  </div>
+
+</div>
+
+
+<script src="js/locations.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
