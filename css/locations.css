@@ -603,26 +603,37 @@ body {
    MOBILE
 ================================ */
 @media (max-width: 768px) {
-  .stores-title {
-    margin-left: 24px;
-    font-size: 36px;
-  }
-
   .store-card {
-    width: calc(100% - 48px);
-    grid-template-columns: 1fr;
-    padding: 24px;
+    /* Remove the 24px padding so image can reach the 5px gap */
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 32px); /* Controls card width on screen */
+    margin: 0 auto;
   }
 
   .store-image {
-    height: 240px;
+    /* This creates the specific 5px gap from top, left, and right */
+    margin: 5px 5px 0 5px; 
+    /* Adjust width to account for the 5px margin on both sides */
+    width: calc(100% - 10px); 
+    height: 200px; /* Or use aspect-ratio: 16/9; */
+    border-radius: 12px; /* Slightly smaller radius looks better with tight gaps */
+  }
+
+  .store-content {
+    /* Re-apply padding here so text stays away from the card edges */
+    padding: 20px; 
+    gap: 12px;
   }
 
   .store-title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .store-address {
-    font-size: 18px;
+    font-size: 16px;
+    max-width: 100%; /* Ensure text doesn't overflow */
   }
 }
+
